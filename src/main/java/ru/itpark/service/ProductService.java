@@ -1,6 +1,7 @@
 package ru.itpark.service;
 
 import ru.itpark.comparator.SearchByNameAscComparator;
+import ru.itpark.comparator.SearchByRatingDescComparator;
 import ru.itpark.model.Product;
 
 import java.util.*;
@@ -50,6 +51,24 @@ public class ProductService {
                 result.add(products.get(i));
             }
         }
+        Collections.sort(result);
+        return result;
+    }
+
+    public List<Product> sortByName() {
+        List<Product> result = new ArrayList<>(products);
+        result.sort(new SearchByNameAscComparator());
+        return result;
+    }
+
+    public List<Product> sortByRating() {
+        List<Product> result = new ArrayList<>(products);
+        result.sort(new SearchByRatingDescComparator());
+        return result;
+    }
+
+    public List<Product> sortByPrice() {
+        List<Product> result = new ArrayList<>(products);
         Collections.sort(result);
         return result;
     }
