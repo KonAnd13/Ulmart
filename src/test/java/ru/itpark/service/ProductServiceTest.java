@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductServiceTest {
     private ProductService service = new ProductService();
-    List<Product> target;
-    List<Product> result;
-    boolean test;
+    private List<Product> target;
+    private List<Product> result;
+    private boolean test;
 
     {
         service.add(
