@@ -42,7 +42,7 @@ public class ProductService {
 
     public List<Product> searchByIndex(int fromIndex, int toIndex) {
         List<Product> result = new ArrayList<>();
-        if (products.size() > fromIndex && products.size() > toIndex) {
+        if (products.size() > toIndex) {
             for (int i = fromIndex; i < toIndex; i++) {
                     result.add(products.get(i));
             }
