@@ -16,6 +16,7 @@ public class ProductService {
 
     public void add(Product ... product) {
         Collections.addAll(products, product);
+        Collections.sort(products);
     }
 
     public List<Product> searchByName(String name) {
@@ -40,20 +41,52 @@ public class ProductService {
         return result;
     }
 
-    public List<Product> searchByIndex(int fromIndex, int toIndex) {
+    private int firstIndex = 0;
+    private int lastIndex = 10;
+    private boolean end = false;
+    private boolean start = false;
+    public List<Product> nextPage() {
         List<Product> result = new ArrayList<>();
-        if (products.size() > toIndex) {
-            for (int i = fromIndex; i < toIndex; i++) {
-                    result.add(products.get(i));
+        if (!end) {
+            if (products.size() > lastIndex) {
+                result = products.subList(firstIndex, lastIndex);
+                int i = lastIndex;
+                lastIndex += 10;
+                firstIndex = i;
+            } else if (products.size() == lastIndex) {
+                result = products.subList(firstIndex, lastIndex);
+                end = true;
+            } else if (products.size() > firstIndex) {
+                result = products.subList(firstIndex, products.size());
+                end = true;
             }
-        } else if (products.size() > fromIndex) {
-            for (int i = fromIndex; i < products.size(); i++) {
-                result.add(products.get(i));
-            }
+        } else {
+            result = products.subList(firstIndex, products.size());
         }
-        Collections.sort(result);
+        start = false;
         return result;
     }
+
+    public List<Product> previousPage() {
+        List<Product> result = new ArrayList<>();
+        if (!start) {
+            if (firstIndex > 0) {
+                firstIndex -= 10;
+                lastIndex -= 10;
+                result = products.subList(firstIndex, lastIndex);
+            } else if (firstIndex == 0 && products.size() >= lastIndex) {
+                result = products.subList(firstIndex, lastIndex);
+                start = true;
+            } else {
+                result = products.subList(firstIndex, products.size());
+                start = true;
+            }
+        }
+        end = false;
+        return result;
+    }
+
+
 
     public List<Product> sortByName() {
         List<Product> result = new ArrayList<>(products);
