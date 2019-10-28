@@ -21,7 +21,7 @@ public class ProductService {
     public List<Product> searchByName(String name) {
         List<Product> result = new ArrayList<>();
         for (Product product : products) {
-            if (product.getName().startsWith(name)) {
+            if (product.getName().toLowerCase().startsWith(name.toLowerCase())) {
                 result.add(product);
             }
         }
@@ -32,7 +32,7 @@ public class ProductService {
     public List<Product> searchByCategory(String category) {
         List<Product> result = new ArrayList<>();
         for (Product product : products) {
-            if (product.getCategory().equals(category)) {
+            if (product.getCategory().toLowerCase().equals(category.toLowerCase())) {
                 result.add(product);
             }
         }
