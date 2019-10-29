@@ -38,27 +38,26 @@ public class ProductService {
         return result;
     }
 
-    private int firstIndex = 0;
-    private int lastIndex = 10;
+    private int startIndex = 0;
+    private int endIndex = 10;
     private boolean end = false;
     private boolean start = false;
     public List<Product> nextPage() {
         List<Product> result = new ArrayList<>();
         if (!end) {
-            if (products.size() > lastIndex) {
-                result = products.subList(firstIndex, lastIndex);
-                int i = lastIndex;
-                lastIndex += 10;
-                firstIndex = i;
-            } else if (products.size() == lastIndex) {
-                result = products.subList(firstIndex, lastIndex);
+            if (products.size() > endIndex) {
+                result = products.subList(startIndex, endIndex);
+                startIndex += 10;
+                endIndex += 10;
+            } else if (products.size() == endIndex) {
+                result = products.subList(startIndex, endIndex);
                 end = true;
-            } else if (products.size() > firstIndex) {
-                result = products.subList(firstIndex, products.size());
+            } else if (products.size() > startIndex) {
+                result = products.subList(startIndex, products.size());
                 end = true;
             }
         } else {
-            result = products.subList(firstIndex, products.size());
+            result = products.subList(startIndex, products.size());
         }
         start = false;
         return result;
@@ -67,15 +66,15 @@ public class ProductService {
     public List<Product> previousPage() {
         List<Product> result = new ArrayList<>();
         if (!start) {
-            if (firstIndex > 0) {
-                firstIndex -= 10;
-                lastIndex -= 10;
-                result = products.subList(firstIndex, lastIndex);
-            } else if (firstIndex == 0 && products.size() >= lastIndex) {
-                result = products.subList(firstIndex, lastIndex);
+            if (startIndex > 0) {
+                startIndex -= 10;
+                endIndex -= 10;
+                result = products.subList(startIndex, endIndex);
+            } else if (startIndex == 0 && products.size() >= endIndex) {
+                result = products.subList(startIndex, endIndex);
                 start = true;
             } else {
-                result = products.subList(firstIndex, products.size());
+                result = products.subList(startIndex, products.size());
                 start = true;
             }
         }
