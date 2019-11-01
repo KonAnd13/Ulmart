@@ -1,5 +1,6 @@
 package ru.itpark.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.itpark.model.Product;
 import ru.itpark.model.Smartphone;
@@ -17,7 +18,8 @@ class ProductServiceTest {
     private List<Product> result;
     private boolean test;
 
-    {
+    @BeforeEach
+    void initial() {
         service.add(
                 new Smartphone(1, "Xiaomi b", "смартфоны", 1, 8000),
                 new Smartphone(2, "Xiaomi c", "смартфоны", 3, 10000),
