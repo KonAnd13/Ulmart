@@ -6,7 +6,6 @@ import ru.itpark.model.Product;
 import ru.itpark.model.Smartphone;
 import ru.itpark.model.Tv;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,12 +57,12 @@ class ProductServiceTest {
 
     @Test
     void searchByCategory() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Tv(8, "LG a", "телевизоры", 5, 15000),
                 new Tv(10, "LG e", "телевизоры", 3, 9000),
                 new Tv(9, "LG g", "телевизоры", 5, 47000),
                 new Tv(12, "LG m", "телевизоры", 5, 17000),
-                new Tv(11, "LG v", "телевизоры", 4, 13000))
+                new Tv(11, "LG v", "телевизоры", 4, 13000)
         );
         result = service.searchByCategory("телевизоры");
         assertEquals(target, result);
@@ -71,9 +70,9 @@ class ProductServiceTest {
 
     @Test
     void nextPage() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Tv(12, "LG m", "телевизоры", 5, 17000),
-                new Tv(9, "LG g", "телевизоры", 5, 47000))
+                new Tv(9, "LG g", "телевизоры", 5, 47000)
         );
         result = service.nextPage();
         result = service.nextPage();
@@ -90,7 +89,7 @@ class ProductServiceTest {
 
     @Test
     void previousPage() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Smartphone(6, "Xiaomi f", "смартфоны", 5, 1500),
                 new Smartphone(7, "Xiaomi g", "смартфоны", 5, 1500),
                 new Smartphone(5, "Xiaomi e", "смартфоны", 4, 2000),
@@ -100,7 +99,7 @@ class ProductServiceTest {
                 new Tv(10, "LG e", "телевизоры", 3, 9000),
                 new Smartphone(2, "Xiaomi c", "смартфоны", 3, 10000),
                 new Tv(11, "LG v", "телевизоры", 4, 13000),
-                new Tv(8, "LG a", "телевизоры", 5, 15000))
+                new Tv(8, "LG a", "телевизоры", 5, 15000)
         );
         result = service.nextPage();
         result = service.previousPage();
@@ -117,7 +116,7 @@ class ProductServiceTest {
 
     @Test
     void sortByName() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Tv(8, "LG a", "телевизоры", 5, 15000),
                 new Tv(10, "LG e", "телевизоры", 3, 9000),
                 new Tv(9, "LG g", "телевизоры", 5, 47000),
@@ -129,7 +128,7 @@ class ProductServiceTest {
                 new Smartphone(4, "Xiaomi d", "смартфоны", 2, 7000),
                 new Smartphone(5, "Xiaomi e", "смартфоны", 4, 2000),
                 new Smartphone(6, "Xiaomi f", "смартфоны", 5, 1500),
-                new Smartphone(7, "Xiaomi g", "смартфоны", 5, 1500))
+                new Smartphone(7, "Xiaomi g", "смартфоны", 5, 1500)
         );
         result = service.sortByName();
         assertEquals(target, result);
@@ -137,7 +136,7 @@ class ProductServiceTest {
 
     @Test
     void sortByRating() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Smartphone(6, "Xiaomi f", "смартфоны", 5, 1500),
                 new Smartphone(7, "Xiaomi g", "смартфоны", 5, 1500),
                 new Tv(8, "LG a", "телевизоры", 5, 15000),
@@ -149,7 +148,7 @@ class ProductServiceTest {
                 new Smartphone(2, "Xiaomi c", "смартфоны", 3, 10000),
                 new Smartphone(3, "Xiaomi a", "смартфоны", 2, 6000),
                 new Smartphone(4, "Xiaomi d", "смартфоны", 2, 7000),
-                new Smartphone(1, "Xiaomi b", "смартфоны", 1, 8000))
+                new Smartphone(1, "Xiaomi b", "смартфоны", 1, 8000)
         );
         result = service.sortByRating();
         assertEquals(target, result);
@@ -157,7 +156,7 @@ class ProductServiceTest {
 
     @Test
     void sortByPrice() {
-        target = new ArrayList<>(Arrays.asList(
+        target = Arrays.asList(
                 new Smartphone(6, "Xiaomi f", "смартфоны", 5, 1500),
                 new Smartphone(7, "Xiaomi g", "смартфоны", 5, 1500),
                 new Smartphone(5, "Xiaomi e", "смартфоны", 4, 2000),
@@ -169,7 +168,7 @@ class ProductServiceTest {
                 new Tv(11, "LG v", "телевизоры", 4, 13000),
                 new Tv(8, "LG a", "телевизоры", 5, 15000),
                 new Tv(12, "LG m", "телевизоры", 5, 17000),
-                new Tv(9, "LG g", "телевизоры", 5, 47000))
+                new Tv(9, "LG g", "телевизоры", 5, 47000)
         );
         result = service.sortByPrice();
         assertEquals(target, result);

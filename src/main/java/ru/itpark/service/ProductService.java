@@ -13,7 +13,6 @@ public class ProductService {
 
     public void add(Product ... product) {
         Collections.addAll(products, product);
-        Collections.sort(products);
     }
 
     public List<Product> searchByName(String name) {
