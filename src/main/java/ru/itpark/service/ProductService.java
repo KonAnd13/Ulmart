@@ -39,51 +39,16 @@ public class ProductService {
         return result;
     }
 
-    private int startIndex = 0;
-    private int endIndex = 10;
-    private boolean end = false;
-    private boolean start = false;
-    public List<Product> nextPage() {
+    public List<Product> pageOfProducts(int fromIndex, int toIndex) {
         List<Product> result = new ArrayList<>();
-        if (!end) {
-            if (products.size() > endIndex) {
-                result = products.subList(startIndex, endIndex);
-                startIndex += 10;
-                endIndex += 10;
-            } else if (products.size() == endIndex) {
-                result = products.subList(startIndex, endIndex);
-                end = true;
-            } else if (products.size() > startIndex) {
-                result = products.subList(startIndex, products.size());
-                end = true;
-            }
-        } else {
-            result = products.subList(startIndex, products.size());
+        if (products.size() >= toIndex) {
+            result = products.subList(fromIndex, toIndex);
+        } else if (products.size() > fromIndex) {
+            result = products.subList(fromIndex, products.size());
         }
-        start = false;
+        Collections.sort(result);
         return result;
     }
-
-    public List<Product> previousPage() {
-        List<Product> result = new ArrayList<>();
-        if (!start) {
-            if (startIndex > 0) {
-                startIndex -= 10;
-                endIndex -= 10;
-                result = products.subList(startIndex, endIndex);
-            } else if (startIndex == 0 && products.size() >= endIndex) {
-                result = products.subList(startIndex, endIndex);
-                start = true;
-            } else {
-                result = products.subList(startIndex, products.size());
-                start = true;
-            }
-        }
-        end = false;
-        return result;
-    }
-
-
 
     public List<Product> sortByName() {
         List<Product> result = new ArrayList<>(products);
