@@ -1,15 +1,17 @@
 package ru.itpark.service;
 
-import lombok.Data;
 import ru.itpark.comparator.SearchByNameAscComparator;
 import ru.itpark.comparator.SearchByRatingDescComparator;
 import ru.itpark.model.Product;
 
 import java.util.*;
 
-@Data
 public class ProductService {
     private final List<Product> products = new ArrayList<>();
+
+    public List<Product> getProducts() {
+        return products;
+    }
 
     public void add(Product ... product) {
         Collections.addAll(products, product);
